@@ -31,10 +31,24 @@ app.get('/', (req, res) => {
 io.on('connection', (socket) => {
     console.log("New User connected"); 
     
+
+    socket.emit('newMessage', {
+        from: 'jayz@nodechat.com',
+        text: 'We dreaming big brah', 
+        createdAt: 123
+    });
+    
+    
+    socket.on('createMessage', (message) => {
+        console.log('createEmail', message);
+    })
+    
     socket.on('disconnect', () => {
         console.log("A connected client has disconnected !!!");
     })
-})
+    
+    
+});
 
 server.listen(process.env.PORT, process.env.IP, function() {
     console.log("NodeChatApp Started !!!!");
