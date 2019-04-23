@@ -2,7 +2,12 @@ const express       = require("express"),
         ejs         = require("ejs"), 
   bodyParser        = require("body-parser"),
           fs        = require('fs'),
-        app         = express();
+    socketIO        = require('socket.io'),
+        http        = require('http'), 
+        
+        app         = express(),
+        server      = http.createServer(app),
+        io          = socketIO(server);
 
 const path = require('path');
 const publicPath = path.join(__dirname, '../public'); 
@@ -23,6 +28,14 @@ app.get('/', (req, res) => {
     });
 });
 
-app.listen(process.env.PORT, process.env.IP, function() {
+io.on('connection', (socket) => {
+    console.log("New User connected"); 
+    
+    socket.on('disconnect', () => {
+        console.log("A connected client has disconnected !!!");
+    })
+})
+
+server.listen(process.env.PORT, process.env.IP, function() {
     console.log("NodeChatApp Started !!!!");
 }); 
