@@ -11,23 +11,28 @@ const express       = require("express"),
 
 const {generateMessage, generateLocationMessage} = require('./utils/message');
 
-const path = require('path');
-const publicPath = path.join(__dirname, '../public'); 
+// const path = require('path');
+// const publicPath = path.join(__dirname, '../public'); 
 
 
 app.use(bodyParser.urlencoded({extended: true}));
-app.use(express.static(publicPath));
+app.use(express.static('public'));
+app.use(express.static('public/css'));
+app.use(express.static('public/js'));
+app.set("view engine", "ejs")
 
 app.get('/', (req, res) => {
-    res.writeHead(200, {'Content-type': 'text/html'});
+    // res.writeHead(200, {'Content-type': 'text/html'});
     
-    fs.readFile(`${publicPath}/index.html`, 'utf-8', (err, data) => {
-        if(err) {
-            console.log(err);
-        }
+    // fs.readFile(`${publicPath}/index.html`, 'utf-8', (err, data) => {
+    //     if(err) {
+    //         console.log(err);
+    //     }
         
-       res.end(data); 
-    });
+    //   res.end(data); 
+    // });
+    
+    res.render("index"); 
 });
 
 io.on('connection', (socket) => {
@@ -43,7 +48,7 @@ io.on('connection', (socket) => {
         console.log('createMessage', message);
         
         io.emit('newMessage', generateMessage(message.from, message.text));
-        callback('This is from the server');
+        callback();
         
         // socket.broadcast.emit('newMessage', {
         //     from: message.from,

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+
+<html>
+    <head>   
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    
+    
+    </head>
+    
+    <body class="chat">
+        <div class="chat__sidebar">
+            <h3>People</h3>
+            <div id="users"></div>
+        </div>
+        
+        <div class="chat__main">
+             <ol id="messages" class="chat__messages"></ol>
+
+
+             <div class="chat__footer">
+                 <form id="message-form">
+                    <input name="message" type="text" placeholder="Message" autofocus autocomplete="off" />
+                    <button>Send</button>
+                </form>
+                 <button id='send-location'>Send Location</button>
+             </div>
+             
+        </div>
+   
+         
+   
+        <script src="/socket.io/socket.io.js"></script>
+        <script src="https://code.jquery.com/jquery-3.4.0.min.js" integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=" crossorigin="anonymous"></script>
+        <script src="/index.js"></script>
+     
+    </body>
+</html>
