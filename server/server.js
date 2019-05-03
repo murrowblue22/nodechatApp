@@ -19,6 +19,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static('public'));
 app.use(express.static('public/css'));
 app.use(express.static('public/js'));
+app.use(express.static('public/js/libs'));
 app.set("view engine", "ejs")
 
 app.get('/', (req, res) => {
