@@ -20,6 +20,7 @@ app.use(express.static('public'));
 app.use(express.static('public/css'));
 app.use(express.static('public/js'));
 app.use(express.static('public/js/libs'));
+
 app.set("view engine", "ejs")
 
 app.get('/', (req, res) => {
@@ -34,6 +35,12 @@ app.get('/', (req, res) => {
     // });
     
     res.render("index"); 
+});
+
+app.get('/chat', (req, res) => {
+   
+    
+    res.render("chat"); 
 });
 
 io.on('connection', (socket) => {
